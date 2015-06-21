@@ -443,10 +443,6 @@ Provides:       nx%{?_isa} = %{version}-%{release}
 Requires:       xorg-x11-fonts-core
 %endif
 
-# Should be a weak dependency, because this package
-# works without the dependency.
-Requires:       xkeyboard-config
-
 %description -n nxagent
 NX is a software suite which implements very efficient compression of
 the X11 protocol. This increases performance when using X
@@ -589,7 +585,6 @@ ln -s -f ../../../../%{_lib}/libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/X
 %post -n libNX_Xext6 -p /sbin/ldconfig
 %post -n libNX_Xinerama1 -p /sbin/ldconfig
 %post -n libNX_Xrender1 -p /sbin/ldconfig
-%post -n libNX_Xtst6 -p /sbin/ldconfig
 %post -n libXcomp3 -p /sbin/ldconfig
 %post -n libXcompext3 -p /sbin/ldconfig
 %post -n libXcompshad3 -p /sbin/ldconfig
@@ -599,7 +594,6 @@ ln -s -f ../../../../%{_lib}/libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/X
 %postun -n libNX_Xext6 -p /sbin/ldconfig
 %postun -n libNX_Xinerama1 -p /sbin/ldconfig
 %postun -n libNX_Xrender1 -p /sbin/ldconfig
-%postun -n libNX_Xtst6 -p /sbin/ldconfig
 %postun -n libXcomp3 -p /sbin/ldconfig
 %postun -n libXcompext3 -p /sbin/ldconfig
 %postun -n libXcompshad3 -p /sbin/ldconfig
@@ -612,6 +606,10 @@ ln -s -f ../../../../%{_lib}/libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/X
 %dir %{_libdir}/nx/X11
 %dir %{_datadir}/nx
 %{_datadir}/nx/SecurityPolicy
+%dir %{_libdir}/nx/X11/Xinerama/
+%{_libdir}/nx/X11/Xinerama/libNX_X11.so.6
+%{_libdir}/nx/X11/Xinerama/libNX_Xext.so.6
+%{_libdir}/nx/X11/Xinerama/libXinerama.so.1*
 
 %files -n libNX_X11-6
 %defattr(-,root,root)
@@ -691,10 +689,6 @@ ln -s -f ../../../../%{_lib}/libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/X
 %defattr(-,root,root)
 %{_libdir}/libNX_Xrender.so.1*
 
-%files -n libNX_Xtst6
-%defattr(-,root,root)
-%{_libdir}/libNX_Xtst.so.6*
-
 %files -n libXcomp-devel
 %defattr(-,root,root)
 %_libdir/libXcomp.so
@@ -751,7 +745,6 @@ ln -s -f ../../../../%{_lib}/libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/X
 %files devel
 %defattr(-,root,root)
 %{_libdir}/libNX_Xinerama.so
-%{_libdir}/libNX_Xtst.so
 %{_includedir}/nx-X11/X10.h
 %dir %{_includedir}/nx-X11/extensions
 %{_includedir}/nx-X11/extensions/XTest.h
